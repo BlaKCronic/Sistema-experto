@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Experto de Finanzas Personales</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+
+        .section {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .section h2 {
+            color: #495057;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #495057;
+            font-size: 0.95em;
+        }
+
+        input[type="number"],
+        select {
+            padding: 12px;
+            border: 2px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s;
+        }
+
+        input[type="number"]:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+        }
+
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            cursor: pointer;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 18px 40px;
+            font-size: 1.2em;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            color: #667eea;
+            font-size: 1.2em;
+        }
+
+        .loading.active {
+            display: block;
+        }
+
+        .results {
+            display: none;
+        }
+
+        .results.active {
+            display: block;
+        }
+
+        .recommendation-category {
+            margin-bottom: 25px;
+        }
+
+        .category-title {
+            font-size: 1.4em;
+            color: #495057;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .recommendation {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            border-left: 4px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .recommendation.high {
+            border-left-color: #dc3545;
+            background: #fff5f5;
+        }
+
+        .recommendation.medium {
+            border-left-color: #ffc107;
+            background: #fffef5;
+        }
+
+        .recommendation.low {
+            border-left-color: #28a745;
+            background: #f5fff5;
+        }
+
+        .back-btn {
+            background: #6c757d;
+            margin-bottom: 20px;
+        }
+
+        .alert {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            color: #856404;
+        }
+
+        .alert strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Colores por sección */
+        .section.ingresos { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); }
+        .section.gastos { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); }
+        .section.deudas { background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); }
+        .section.educacion { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); }
+        .section.seguros { background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%); }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="formulario">
+            <h1>💰 Sistema Experto de Finanzas</h1>
+            <p class="subtitle">Completa el formulario para recibir recomendaciones personalizadas</p>
+
+            <div class="alert">
+                <strong>⚠️ Nota Importante:</strong>
+                Este sistema requiere un backend Flask corriendo en http://localhost:5000. 
+                Si no lo has iniciado, ejecuta: <code>python backend.py</code>
+            </div>
+
+            <!-- Ingresos y Gastos -->
+            <div class="section ingresos">
+                <h2>💵 Ingresos y Gastos</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Ingreso mensual neto ($)</label>
+                        <input type="number" id="ingreso" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Gasto mensual total ($)</label>
+                        <input type="number" id="gasto_total" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Ahorro mensual ($)</label>
+                        <input type="number" id="ahorro_mensual" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Meses de fondo de emergencia</label>
+                        <input type="number" id="meses_fondo" step="0.1" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Desglose de Gastos -->
+            <div class="section gastos">
+                <h2>🏠 Desglose de Gastos</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Vivienda ($)</label>
+                        <input type="number" id="vivienda" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Alimentación ($)</label>
+                        <input type="number" id="alimentacion" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Transporte ($)</label>
+                        <input type="number" id="transporte" step="0.01" required>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Deudas -->
+            <div class="section deudas">
+                <h2>💳 Deudas</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Pago mensual de deudas ($)</label>
+                        <input type="number" id="deudas_total" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label>APR promedio (%)</label>
+                        <input type="number" id="tasa_interes_apr" step="0.1" required>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="cc_pago_minimo">
+                        <label for="cc_pago_minimo">¿Paga solo el mínimo en tarjeta de crédito?</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Educación Financiera -->
+            <div class="section educacion">
+                <h2>📚 Educación Financiera</h2>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label>Nivel de conocimiento</label>
+                        <select id="nivel_conocimiento">
+                            <option value="basic">Básico</option>
+                            <option value="intermediate">Intermedio</option>
+                            <option value="advanced">Avanzado</option>
+                        </select>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="jubilacion_definida">
+                        <label for="jubilacion_definida">¿Ha definido aporte a jubilación?</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="registra_gastos">
+                        <label for="registra_gastos">¿Registra sus gastos?</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seguros y Protección -->
+            <div class="section seguros">
+                <h2>🛡️ Seguros y Protección</h2>
+                <div class="form-grid">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="tiene_seguro_salud">
+                        <label for="tiene_seguro_salud">¿Tiene seguro de salud?</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="tiene_seguro_vida">
+                        <label for="tiene_seguro_vida">¿Tiene seguro de vida?</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="dependientes">
+                        <label for="dependientes">¿Tiene dependientes?</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="posee_auto">
+                        <label for="posee_auto">¿Posee auto?</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="tiene_seguro_auto">
+                        <label for="tiene_seguro_auto">¿Tiene seguro de auto?</label>
+                    </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="tiene_testamento">
+                        <label for="tiene_testamento">¿Tiene testamento?</label>
+                    </div>
+                    <div class="form-group">
+                        <label>Ratio de gasto médico (0.10 = 10%)</label>
+                        <input type="number" id="gasto_medico_ratio" step="0.01" required>
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn" onclick="obtenerRecomendaciones()">
+                🚀 Obtener Recomendaciones Personalizadas
+            </button>
+
+            <div class="loading" id="loading">
+                ⏳ Consultando al motor de reglas Prolog...
+            </div>
+        </div>
+
+        <div class="results" id="resultados">
+            <button class="btn back-btn" onclick="volverFormulario()">
+                ← Volver al Formulario
+            </button>
+            <h1>📊 Tus Recomendaciones Financieras</h1>
+            <div id="recomendaciones-container"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+
+        const categoryIcons = {
+            ahorro: '💰',
+            presupuesto: '📊',
+            deuda: '💳',
+            metas: '🎯',
+            seguro: '🛡️',
+            educacion: '📚',
+            general: '⚙️'
+        };
+
+        const categoryNames = {
+            ahorro: 'Ahorro y Fondo de Emergencia',
+            presupuesto: 'Presupuesto y Gastos',
+            deuda: 'Manejo de Deudas',
+            metas: 'Metas Financieras',
+            seguro: 'Seguros y Protección',
+            educacion: 'Educación Financiera',
+            general: 'Recomendaciones Generales'
+        };
+
+        async function obtenerRecomendaciones() {
+            const formulario = document.getElementById('formulario');
+            const loading = document.getElementById('loading');
+            const resultados = document.getElementById('resultados');
+
+            // Recopilar datos del formulario
+            const datos = {
+                ingreso: parseFloat(document.getElementById('ingreso').value) || 0,
+                gasto_total: parseFloat(document.getElementById('gasto_total').value) || 0,
+                ahorro_mensual: parseFloat(document.getElementById('ahorro_mensual').value) || 0,
+                meses_fondo: parseFloat(document.getElementById('meses_fondo').value) || 0,
+                vivienda: parseFloat(document.getElementById('vivienda').value) || 0,
+                alimentacion: parseFloat(document.getElementById('alimentacion').value) || 0,
+                transporte: parseFloat(document.getElementById('transporte').value) || 0,
+                deudas_total: parseFloat(document.getElementById('deudas_total').value) || 0,
+                cc_pago_minimo: document.getElementById('cc_pago_minimo').checked,
+                tasa_interes_apr: parseFloat(document.getElementById('tasa_interes_apr').value) || 0,
+                jubilacion_definida: document.getElementById('jubilacion_definida').checked,
+                nivel_conocimiento: document.getElementById('nivel_conocimiento').value,
+                tiene_seguro_salud: document.getElementById('tiene_seguro_salud').checked,
+                tiene_seguro_vida: document.getElementById('tiene_seguro_vida').checked,
+                dependientes: document.getElementById('dependientes').checked,
+                posee_auto: document.getElementById('posee_auto').checked,
+                tiene_seguro_auto: document.getElementById('tiene_seguro_auto').checked,
+                gasto_medico_ratio: parseFloat(document.getElementById('gasto_medico_ratio').value) || 0,
+                tiene_testamento: document.getElementById('tiene_testamento').checked,
+                registra_gastos: document.getElementById('registra_gastos').checked,
+                metas: []
+            };
+
+            // Mostrar loading
+            loading.classList.add('active');
+
+            try {
+                const response = await fetch(`${API_URL}/recomendaciones`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(datos)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Error al obtener recomendaciones');
+                }
+
+                const data = await response.json();
+                mostrarRecomendaciones(data.categorizadas);
+
+                // Ocultar formulario y mostrar resultados
+                formulario.style.display = 'none';
+                resultados.classList.add('active');
+            } catch (error) {
+                alert('Error: No se pudo conectar con el servidor.\n\nAsegúrate de que el backend esté corriendo:\npython backend.py');
+                console.error('Error:', error);
+            } finally {
+                loading.classList.remove('active');
+            }
+        }
+
+        function mostrarRecomendaciones(categorizadas) {
+            const container = document.getElementById('recomendaciones-container');
+            container.innerHTML = '';
+
+            for (const [categoria, recomendaciones] of Object.entries(categorizadas)) {
+                if (recomendaciones.length === 0) continue;
+
+                const categoryDiv = document.createElement('div');
+                categoryDiv.className = 'recommendation-category';
+
+                const title = document.createElement('h2');
+                title.className = 'category-title';
+                title.innerHTML = `${categoryIcons[categoria]} ${categoryNames[categoria]}`;
+                categoryDiv.appendChild(title);
+
+                recomendaciones.forEach(rec => {
+                    const recDiv = document.createElement('div');
+                    recDiv.className = `recommendation ${rec.priority}`;
+                    recDiv.textContent = rec.text;
+                    categoryDiv.appendChild(recDiv);
+                });
+
+                container.appendChild(categoryDiv);
+            }
+        }
+
+        function volverFormulario() {
+            document.getElementById('formulario').style.display = 'block';
+            document.getElementById('resultados').classList.remove('active');
+        }
+
+        // Cargar datos de ejemplo
+        function cargarEjemplo() {
+            document.getElementById('ingreso').value = 15000;
+            document.getElementById('gasto_total').value = 16500;
+            document.getElementById('ahorro_mensual').value = 800;
+            document.getElementById('meses_fondo').value = 0.5;
+            document.getElementById('vivienda').value = 6000;
+            document.getElementById('alimentacion').value = 5800;
+            document.getElementById('transporte').value = 3500;
+            document.getElementById('deudas_total').value = 5200;
+            document.getElementById('cc_pago_minimo').checked = true;
+            document.getElementById('tasa_interes_apr').value = 42;
+            document.getElementById('gasto_medico_ratio').value = 0.18;
+        }
+
+        // Puedes descomentar esta línea para cargar automáticamente el ejemplo
+        // cargarEjemplo();
+    </script>
+</body>
+</html>
