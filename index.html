@@ -12,53 +12,54 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Georgia', serif;
+            background: #e8e4dc;
             min-height: 100vh;
-            padding: 20px;
+            padding: 30px 15px;
+            color: #2d2d2d;
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 920px;
             margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            padding: 40px;
+            background: #fdfcf9;
+            border: 1px solid #c8c0b0;
+            padding: 45px 50px;
         }
 
         h1 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 2.5em;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+            font-size: 2.2em;
+            font-weight: 500;
+            letter-spacing: -0.5px;
         }
 
         .subtitle {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 1.1em;
+            color: #6b6b6b;
+            margin-bottom: 35px;
+            font-size: 0.95em;
+            font-style: italic;
         }
 
         .section {
-            background: #f8f9fa;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 20px;
+            border-top: 2px solid #d4cfc4;
+            padding-top: 28px;
+            margin-bottom: 35px;
         }
 
         .section h2 {
-            color: #495057;
-            margin-bottom: 20px;
-            font-size: 1.5em;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            color: #3a3a3a;
+            margin-bottom: 22px;
+            font-size: 1.3em;
+            font-weight: 500;
         }
 
         .form-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px 25px;
+            margin-bottom: 10px;
         }
 
         .form-group {
@@ -67,76 +68,77 @@
         }
 
         label {
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #495057;
-            font-size: 0.95em;
+            font-weight: 400;
+            margin-bottom: 6px;
+            color: #4a4a4a;
+            font-size: 0.9em;
         }
 
         input[type="number"],
         select {
-            padding: 12px;
-            border: 2px solid #dee2e6;
-            border-radius: 8px;
-            font-size: 1em;
-            transition: border-color 0.3s;
+            padding: 9px 11px;
+            border: 1px solid #b8b0a0;
+            background: #fff;
+            font-size: 0.95em;
+            font-family: inherit;
         }
 
         input[type="number"]:focus,
         select:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #7a7260;
+            background: #fffef8;
         }
 
         .checkbox-group {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 10px 0;
+            gap: 8px;
+            padding: 8px 0;
         }
 
         input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
             cursor: pointer;
         }
 
         .checkbox-group label {
             margin: 0;
             cursor: pointer;
+            font-size: 0.9em;
         }
 
         .btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: #3d3d3d;
+            color: #fff;
             border: none;
-            padding: 18px 40px;
-            font-size: 1.2em;
-            font-weight: 600;
-            border-radius: 12px;
+            padding: 14px 32px;
+            font-size: 1em;
+            font-weight: 400;
             cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
             width: 100%;
-            margin-top: 20px;
+            margin-top: 25px;
+            font-family: inherit;
+            letter-spacing: 0.3px;
         }
 
         .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+            background: #2a2a2a;
         }
 
         .btn:disabled {
-            background: #ccc;
+            background: #b0b0b0;
             cursor: not-allowed;
-            transform: none;
         }
 
         .loading {
             display: none;
             text-align: center;
-            padding: 20px;
-            color: #667eea;
-            font-size: 1.2em;
+            padding: 25px;
+            color: #5a5a5a;
+            font-size: 1em;
+            font-style: italic;
         }
 
         .loading.active {
@@ -152,79 +154,75 @@
         }
 
         .recommendation-category {
-            margin-bottom: 25px;
+            margin-bottom: 35px;
         }
 
         .category-title {
-            font-size: 1.4em;
-            color: #495057;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 1.25em;
+            color: #2d2d2d;
+            margin-bottom: 16px;
+            font-weight: 500;
+            border-bottom: 1px solid #d4cfc4;
+            padding-bottom: 8px;
         }
 
         .recommendation {
-            background: white;
-            padding: 15px 20px;
-            border-radius: 10px;
-            margin-bottom: 12px;
-            border-left: 4px solid #ccc;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            background: #f9f8f5;
+            padding: 13px 16px;
+            margin-bottom: 10px;
+            border-left: 3px solid #c0c0c0;
+            line-height: 1.5;
+            font-size: 0.93em;
         }
 
         .recommendation.high {
-            border-left-color: #dc3545;
-            background: #fff5f5;
+            border-left-color: #a84432;
+            background: #faf6f5;
         }
 
         .recommendation.medium {
-            border-left-color: #ffc107;
-            background: #fffef5;
+            border-left-color: #c59820;
+            background: #fafaf5;
         }
 
         .recommendation.low {
-            border-left-color: #28a745;
-            background: #f5fff5;
+            border-left-color: #4a7c59;
+            background: #f6faf7;
         }
 
         .back-btn {
-            background: #6c757d;
-            margin-bottom: 20px;
+            background: #6b6b6b;
+            margin-bottom: 25px;
         }
 
         .alert {
-            background: #fff3cd;
-            border: 2px solid #ffc107;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            color: #856404;
+            background: #fffae6;
+            border: 1px solid #d4c89a;
+            padding: 14px 16px;
+            margin-bottom: 25px;
+            color: #5c5234;
+            font-size: 0.88em;
+            line-height: 1.5;
         }
 
         .alert strong {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            font-weight: 500;
         }
-
-        /* Colores por sección */
-        .section.ingresos { background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); }
-        .section.gastos { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%); }
-        .section.deudas { background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%); }
-        .section.educacion { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7 100%); }
-        .section.seguros { background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%); }
 
         @media (max-width: 768px) {
             .container {
-                padding: 20px;
+                padding: 30px 25px;
             }
             
             h1 {
-                font-size: 1.8em;
+                font-size: 1.7em;
             }
             
             .form-grid {
                 grid-template-columns: 1fr;
+                gap: 18px;
             }
         }
     </style>
@@ -232,18 +230,11 @@
 <body>
     <div class="container">
         <div id="formulario">
-            <h1>💰 Sistema Experto de Finanzas</h1>
-            <p class="subtitle">Completa el formulario para recibir recomendaciones personalizadas</p>
+            <h1>Sistema Experto de Finanzas</h1>
+            <p class="subtitle">Complete la información para recibir recomendaciones</p>
 
-            <div class="alert">
-                <strong>⚠️ Nota Importante:</strong>
-                Este sistema requiere un backend Flask corriendo en http://localhost:5000. 
-                Si no lo has iniciado, ejecuta: <code>python backend.py</code>
-            </div>
-
-            <!-- Ingresos y Gastos -->
-            <div class="section ingresos">
-                <h2>💵 Ingresos y Gastos</h2>
+            <div class="section">
+                <h2>Ingresos y Gastos</h2>
                 <div class="form-grid">
                     <div class="form-group">
                         <label>Ingreso mensual neto ($)</label>
@@ -264,9 +255,8 @@
                 </div>
             </div>
 
-            <!-- Desglose de Gastos -->
-            <div class="section gastos">
-                <h2>🏠 Desglose de Gastos</h2>
+            <div class="section">
+                <h2>Desglose de Gastos</h2>
                 <div class="form-grid">
                     <div class="form-group">
                         <label>Vivienda ($)</label>
@@ -283,9 +273,8 @@
                 </div>
             </div>
 
-            <!-- Deudas -->
-            <div class="section deudas">
-                <h2>💳 Deudas</h2>
+            <div class="section">
+                <h2>Deudas</h2>
                 <div class="form-grid">
                     <div class="form-group">
                         <label>Pago mensual de deudas ($)</label>
@@ -295,16 +284,15 @@
                         <label>APR promedio (%)</label>
                         <input type="number" id="tasa_interes_apr" step="0.1" required>
                     </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="cc_pago_minimo">
-                        <label for="cc_pago_minimo">¿Paga solo el mínimo en tarjeta de crédito?</label>
-                    </div>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="cc_pago_minimo">
+                    <label for="cc_pago_minimo">¿Paga solo el mínimo en tarjeta de crédito?</label>
                 </div>
             </div>
 
-            <!-- Educación Financiera -->
-            <div class="section educacion">
-                <h2>📚 Educación Financiera</h2>
+            <div class="section">
+                <h2>Educación Financiera</h2>
                 <div class="form-grid">
                     <div class="form-group">
                         <label>Nivel de conocimiento</label>
@@ -314,45 +302,44 @@
                             <option value="advanced">Avanzado</option>
                         </select>
                     </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="jubilacion_definida">
-                        <label for="jubilacion_definida">¿Ha definido aporte a jubilación?</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="registra_gastos">
-                        <label for="registra_gastos">¿Registra sus gastos?</label>
-                    </div>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="jubilacion_definida">
+                    <label for="jubilacion_definida">¿Ha definido aporte a jubilación?</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="registra_gastos">
+                    <label for="registra_gastos">¿Registra sus gastos?</label>
                 </div>
             </div>
 
-            <!-- Seguros y Protección -->
-            <div class="section seguros">
-                <h2>🛡️ Seguros y Protección</h2>
+            <div class="section">
+                <h2>Seguros y Protección</h2>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="tiene_seguro_salud">
+                    <label for="tiene_seguro_salud">¿Tiene seguro de salud?</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="tiene_seguro_vida">
+                    <label for="tiene_seguro_vida">¿Tiene seguro de vida?</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="dependientes">
+                    <label for="dependientes">¿Tiene dependientes?</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="posee_auto">
+                    <label for="posee_auto">¿Posee auto?</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="tiene_seguro_auto">
+                    <label for="tiene_seguro_auto">¿Tiene seguro de auto?</label>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="tiene_testamento">
+                    <label for="tiene_testamento">¿Tiene testamento?</label>
+                </div>
                 <div class="form-grid">
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="tiene_seguro_salud">
-                        <label for="tiene_seguro_salud">¿Tiene seguro de salud?</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="tiene_seguro_vida">
-                        <label for="tiene_seguro_vida">¿Tiene seguro de vida?</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="dependientes">
-                        <label for="dependientes">¿Tiene dependientes?</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="posee_auto">
-                        <label for="posee_auto">¿Posee auto?</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="tiene_seguro_auto">
-                        <label for="tiene_seguro_auto">¿Tiene seguro de auto?</label>
-                    </div>
-                    <div class="checkbox-group">
-                        <input type="checkbox" id="tiene_testamento">
-                        <label for="tiene_testamento">¿Tiene testamento?</label>
-                    </div>
                     <div class="form-group">
                         <label>Ratio de gasto médico (0.10 = 10%)</label>
                         <input type="number" id="gasto_medico_ratio" step="0.01" required>
@@ -361,35 +348,25 @@
             </div>
 
             <button class="btn" onclick="obtenerRecomendaciones()">
-                🚀 Obtener Recomendaciones Personalizadas
+                Obtener Recomendaciones
             </button>
 
             <div class="loading" id="loading">
-                ⏳ Consultando al motor de reglas Prolog...
+                Consultando al motor de reglas Prolog...
             </div>
         </div>
 
         <div class="results" id="resultados">
             <button class="btn back-btn" onclick="volverFormulario()">
-                ← Volver al Formulario
+                Volver al Formulario
             </button>
-            <h1>📊 Tus Recomendaciones Financieras</h1>
+            <h1>Recomendaciones Financieras</h1>
             <div id="recomendaciones-container"></div>
         </div>
     </div>
 
     <script>
         const API_URL = 'http://localhost:5000/api';
-
-        const categoryIcons = {
-            ahorro: '💰',
-            presupuesto: '📊',
-            deuda: '💳',
-            metas: '🎯',
-            seguro: '🛡️',
-            educacion: '📚',
-            general: '⚙️'
-        };
 
         const categoryNames = {
             ahorro: 'Ahorro y Fondo de Emergencia',
@@ -406,7 +383,6 @@
             const loading = document.getElementById('loading');
             const resultados = document.getElementById('resultados');
 
-            // Recopilar datos del formulario
             const datos = {
                 ingreso: parseFloat(document.getElementById('ingreso').value) || 0,
                 gasto_total: parseFloat(document.getElementById('gasto_total').value) || 0,
@@ -431,7 +407,6 @@
                 metas: []
             };
 
-            // Mostrar loading
             loading.classList.add('active');
 
             try {
@@ -450,7 +425,6 @@
                 const data = await response.json();
                 mostrarRecomendaciones(data.categorizadas);
 
-                // Ocultar formulario y mostrar resultados
                 formulario.style.display = 'none';
                 resultados.classList.add('active');
             } catch (error) {
@@ -473,7 +447,7 @@
 
                 const title = document.createElement('h2');
                 title.className = 'category-title';
-                title.innerHTML = `${categoryIcons[categoria]} ${categoryNames[categoria]}`;
+                title.textContent = categoryNames[categoria];
                 categoryDiv.appendChild(title);
 
                 recomendaciones.forEach(rec => {
@@ -491,24 +465,6 @@
             document.getElementById('formulario').style.display = 'block';
             document.getElementById('resultados').classList.remove('active');
         }
-
-        // Cargar datos de ejemplo
-        function cargarEjemplo() {
-            document.getElementById('ingreso').value = 15000;
-            document.getElementById('gasto_total').value = 16500;
-            document.getElementById('ahorro_mensual').value = 800;
-            document.getElementById('meses_fondo').value = 0.5;
-            document.getElementById('vivienda').value = 6000;
-            document.getElementById('alimentacion').value = 5800;
-            document.getElementById('transporte').value = 3500;
-            document.getElementById('deudas_total').value = 5200;
-            document.getElementById('cc_pago_minimo').checked = true;
-            document.getElementById('tasa_interes_apr').value = 42;
-            document.getElementById('gasto_medico_ratio').value = 0.18;
-        }
-
-        // Puedes descomentar esta línea para cargar automáticamente el ejemplo
-        // cargarEjemplo();
     </script>
 </body>
 </html>
